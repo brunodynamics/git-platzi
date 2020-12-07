@@ -91,7 +91,7 @@ Una de las funcionalidades más interesantes de Git, es que brinda la posibilida
 Supongamos que tenemos una página web, la cual ya fue terminada y está en producción. Llega diciembre y queremos hacerle algunos cambios a esta página para darle un tema navideño.
 Lo más lógico sería dejar trabajar en los cambios sin afectar a la página que ya está en producción hasta que estemos seguro de que lo nuevo que hicimos nos gusta. Para este caso sería muy útil crear una rama "Navidad" al proyecto y trabajarlo en paralelo, para cuando hayamos acabado, unir ambas ramas y reflejar los cambios a nuestros clientes.
 
-![Ejemplo Ramas](img/Branches.png)
+![Ejemplo Ramas](img/Branches.PNG)
 
 Para crear una rama en Git es muy simple, se puede usar el siguiente comando:
 
