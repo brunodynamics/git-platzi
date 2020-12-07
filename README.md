@@ -52,6 +52,8 @@ Los archivos de una directorio que contenga la carpeta **.git** pueden tener 4 e
 
   > git log --oneline
 
+  > git log --all --graph --decorate --oneline
+
 ## Analizar cambios en el repositorio
 
 El propósito de contar con un sistema de control de versiones es el poder de regresar en el tiempo, si algo se rompió, ver qu;e cambió para romper el código y así hacer los cambios necesarios.
@@ -131,3 +133,70 @@ No entremos en pánico cuando suceda esto, lo mejor que podemos hacer es hablar 
 <small>Elimina la rama indicada</small>
 
 ## Github
+
+Para esta sección se asumirá que ya se tiene una cuenta de Github.
+
+Para conectar nuestro repositorio a un repositorio remoto es bastante sencillo y hay dos maneras: HTTPS y SSH.
+
+Para establecer una conexión con HTTPS podemos usar lo siguiente:
+
+> git remote add \<urlcodename\> \<url\>
+
+<small>El urlcodename, se refiere a con qué nombre quieres llamar a la url de tu repositorio remoto. Por convención se suele usar el nombre de origin.</small>
+
+Por otro lado, si se deseara establecer una conexión SSH, debemos colcoar lo siguiente:"
+
+> git remote set-url \<urlcodename\> <SSHurl\>
+
+<small>Para lograr hacer esta conexión se debe hacer un intercambio de llaves públicas entre tu computador y Github. Se asume que esto ya está hecho.</small>
+
+Si deseamos clonar un repositorio remoto, es muy sencillo. Solo debemos ejecutar el siguiente comando:
+
+> git clone \<url\>
+
+> git clone \<SSHurl\>
+
+## Manejo de Tags y Versiones
+
+Los tags o etiquetas nos permiten asignar versiones a los commits con cambios más importantes o significativos de nuestro proyecto.
+
+### Comandos importantes
+
+- Crear un nuevo tag:
+
+  > git tag -a \<tagname\> \<commitID\>
+
+- Borrar tag del repositorio local:
+
+  > git tag -d \<tagname\>
+
+- Listar tags del repositorio local:
+
+  > git tag
+
+  > git show-ref --tags
+
+- Publicar tags en el repositorio remoto:
+
+  > git push origin --tags
+
+- Borrar un tag del repositorio remoto:
+
+  1. > git tag -d \<tagname\>
+  2. > git push origin :refs/tags/\<tagname\>
+
+## Manejo de Ramas en Github
+
+#### Comando útiles para el manejo de ramas
+
+- > git show-branch --all
+
+  <small>Muestra un detalle de los branches que existen y sus cambios</small>
+
+- > gitk
+
+  <small>Muestra una representación visual del repositorio con ayuda de una GUI.</small>
+
+Para enviar una rama al repositorio remoto debemos primero hacer checkout a la rama que se desea enviar y colocar el siguiente comando:
+
+> git push origin \<branchname\>
