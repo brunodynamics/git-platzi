@@ -122,6 +122,10 @@ Muchas veces pueden ocurrir conflictos al momento de hacer merging, esto debido 
 Cuando esto ocurra, Git nos pintará en el documento marcas mostrando dónde está el o los conflictos.
 No entremos en pánico cuando suceda esto, lo mejor que podemos hacer es hablar con el desarrollador involucrado y definir qué lineas se quedan y cuales no.
 
+Luego de corregir los conflictos, se debe culminar con el merging con el siguiente comando:
+
+> git commit -am "mensaje explicativo"
+
 ### Comandos útiles:
 
 > git branch -a
@@ -200,3 +204,50 @@ Los tags o etiquetas nos permiten asignar versiones a los commits con cambios m�
 Para enviar una rama al repositorio remoto debemos primero hacer checkout a la rama que se desea enviar y colocar el siguiente comando:
 
 > git push origin \<branchname\>
+
+## Flujo de trabajo Github
+
+Para un correcto flujo de trabajo y siguiendo buenas prácticas de desarrollo, cada desarrollador debería trabajar en ramas distintas a la master, hacer sus cambios allí y luego enviarlos al repositorio remoto para su aprobación y merging.
+
+Para traer todos los cambios de una rama del repositorio remoto, es tan sencillo como colocar el siguiente comando:
+
+> git pull origin \<branchname\>
+
+Por otro lado, si se desea enviar los cambios hechos en una rama al repositorio remoto, debemos colocar:
+
+> git push origin \<branchname\>
+
+## Pull Requests
+
+Cuando se quiere hacer un merge a la rama master desde alguna otra rama que, por ejemplo, haya servido para trabajar una funcionalidad nueva, se debe pasar por una validación previa.
+Esta validación la suele hacer un supervisor o un desarrollador de más alto nivel, el cual gracias a la funcionalidad **Pull Request** de Github (Merge Request en Gitlab y Push Request en Bitbucket), verfica si los cambios cumplen con lo necesario para completar el merge.
+
+## Forks o Bifurcaciones
+
+Fork es una funcionalidad de Github que se utiliza normalmente para colaborar con proyectos open source. Funciona clonando totalmente el proyecto en tus repositorios de Github y utilizando el flujo de Pull Requests te permite proponer mejoras al creador original.
+
+Ahora, supongamos que hicimos cambios y fueron aprobados por el creador del proyecto. Tiempo después queremos volver a hacer un aporte, pero el proyecto que tenemos en nuestro Github está retrasado con el original.
+Para poder traer los datos desde el repositorio original a nuestro repositorio local es tan sencillo como crear un nuevo _remote_ al cual se le suele llamar **upstream** y hacerle git pull como si se estuviera trabajando con el _origin_.
+
+## .gitignore
+
+El archivo .gitignore en un repositorio es similar a una lista negra en la cual se indican los directorios o archivos que no se desean incluir en él.
+
+## README
+
+Es muy buena práctica tener un archivo README en el cual se describa lo que contiene el repositorio.
+
+Un buen editor de archivos .md: [Editor.md](https://pandao.github.io/editor.md/en.html)
+
+## Github Pages
+
+Github tiene un servicio de hosting gratuito llamado Github Pages.
+
+Esta puede funcionar para hostear la página principal de tu usuario de Github, pero ¿cómo hacemos esto?
+
+Debes crear un repositorio con un nombre con la siguiente forma:
+
+> \<yourusername\>.github.io
+
+Con esto, se puede seguir el flujo que se ha estado siguiendo a lo largo del curso (commits, push, pull, etc), con la única salvedad de que debes tener un archivo index.html que servirá con el home de la página.
+Y para poder obtener la opción de Github Pages, es tan sencillo como ir a los Settings de Github y habilitarlo.
