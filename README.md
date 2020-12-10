@@ -251,3 +251,122 @@ Debes crear un repositorio con un nombre con la siguiente forma:
 
 Con esto, se puede seguir el flujo que se ha estado siguiendo a lo largo del curso (commits, push, pull, etc), con la única salvedad de que debes tener un archivo index.html que servirá con el home de la página.
 Y para poder obtener la opción de Github Pages, es tan sencillo como ir a los Settings de Github y habilitarlo.
+
+## Rebase
+
+Rebase sirve para pegar una rama entera a otra sin dejar rastro de que existió, esto modifica la historia del reepositorio, por lo cual **SOLO DEBE SER USADO EN REPOSITORIOS LOCALES**.
+
+Para hacer un rebase, desde la rama que se desea pegar se coloca el siguiente comando:
+
+> git rebase \<destinationBranch\>
+
+Y luego, desde la rama de destino se hace la operación inversa.
+
+## Stash
+
+Git Stash nos sirve cuando queremos guardar algunos cambios que hicimos en memoria, para poder cambiar de rama o de commit sin perderlos.
+
+Para poder hacer un stash debemos colocar:
+
+> git stash
+
+Y si deseáramos colocarle un mensaje al stash:
+
+> git stash save "\<message\>"
+
+Este comando nos hará regresar al último commit de la rama en la que estemos y guardará los cambios para utilizarlos después.
+
+Ahora bien, ¿cómo traemos de vuelta estos cambios?
+
+> git stash pop
+
+Pero si tenemos más de un stash y queremos indicar alguno en específico:
+
+> git stash pop stash@{\<stashnumber\>}
+
+Si se desea colocar el stash más reciente en una rama, se debe colocar:
+
+> git stash branch \<branchname\>
+
+Por otro lado, si se desea visualizar un listado de los stash creados:
+
+> git stash list
+
+Finalmente, si he hecho cambios de los cuales me quiero deshacer, es tan sencillo como crear un stash de esos cambios y eliminarlo.
+
+> git stash drop
+
+O si quiero eliminar un stash específico:
+
+> git stash drop stash@{\<stashnumber\>}
+
+## Clean
+
+Muy útil cuando queremos hacer una limpieza de los archivos que están en el directorio de trabajo pero que no suman al repositorio ni al proyecto.
+
+Para poder simular qué es lo que se iría a borrar ejecutamos un dry run:
+
+> git clean --dry-run
+
+Y si se desea proceder con la eliminación:
+
+> git clean -f
+
+Nos damos cuenta que al ejecutar este comando, solo se nos borran los archivos mas no los directorios.
+Para el borrado de carpetas untracked se usa:
+
+> git clean -df
+
+## Cherry Pick
+
+Sirve para traer al HEAD de un branch determinado commit. Es mala práctica pues reescribe la historia del repositorio.
+Usémoslo con cuidado.
+
+Para utilizarlo, nos vamos a la rama a la que deseamos traernos el commit al HEAD y ejecutamos:
+
+> git cherry-pick \<commitID\>
+
+## Amend
+
+Muy útil cuando queremos corregir un commit que no quisimos hacer porque se nos olvidó algo.
+
+Para poder hacer esto, debemos completar primero lo que nos faltaba, luego mandar esos cambios a staging.
+
+Luego ejecutamos:
+
+> git commit --amend
+
+Esto agregará los cambios al último commit hecho.
+
+## SOS Reflog
+
+En caso de que hayamos roto todo, por algún motivo y no sepamos que hacer, debemos recordar que Git nunca olvida nada. Si algo estuvo bien en algún momento, Git lo debe tener en algún lugar guardado.
+
+Para ver **TODOS** los cambios, commits y HEADS del repositorio usamos:
+
+> git reflog
+
+Con ello, debemos sacar el ID del commit o del HEAD al que deseemos volver y utilizamos un git reset para hacerlo.
+
+## Búsquedas con Grep y Log
+
+Cuando nuestro proyecto va creciendo, nos surge la necesidad de buscar cosas que se hayan escrito, cuántas veces se escribió, dónde se escribió, etc.
+Para ello podemos usar grep:
+
+> git grep \<anything\>
+
+Esto buscará los archivos donde se haya escrito \<anything\>
+
+> git grep -n \<anything\>
+
+Nos mostrará en qué líneas se encuentra \<anything\>
+
+> git grep -c \<anything\>
+
+Nos mostrará cuántas veces se repite \<anything\>
+
+Algo similar se puede hacer en los commits utilizando lo siguiente:
+
+> git log -S \<anything\>
+
+Esto nos buscará en los commits, dónde aparece \<anything\> y nos lo mostrará en consola.
