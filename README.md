@@ -116,6 +116,16 @@ Y luego ejectura el comando merge:
 
 > git merge \<branchname2\>
 
+#### Otros comandos de Branches
+
+> git branch -r
+
+Muestra las ramas remotas.
+
+> git branch -a
+
+Muestra todas las ramas.
+
 ### Resolución de Conflictos
 
 Muchas veces pueden ocurrir conflictos al momento de hacer merging, esto debido a que no siempre sabemos qué archivos están modificando nuestros compañeros del proyecto.
@@ -370,3 +380,41 @@ Algo similar se puede hacer en los commits utilizando lo siguiente:
 > git log -S \<anything\>
 
 Esto nos buscará en los commits, dónde aparece \<anything\> y nos lo mostrará en consola.
+
+## Comandos extra
+
+#### Shortlog:
+
+> git shortlog
+
+Muestra todos los commits hechos por cada usuario colaborador del resositorio.
+
+> git shortlog -sn
+
+Muestra cuántos commits ha hecho cada miembro del equipo.
+
+> git shortlog -sn --all
+
+Incluye los commits eliminados.
+
+> git shortlog -sn --all --no-merge
+
+Quita del conteo los commits por merge.
+
+#### Creación de Aliases
+
+Si deseáramos crear un alias específico para un comando de Git, podemos hacer lo siguiente:
+
+> git config --global alias.\<alias\> "\<git commands\>"
+
+#### Blame
+
+Nos sirve para ver en un archivo el responsable de cada línea de código.
+
+> git blame \<filename\>
+
+Si deseáramos ver solo algunas líneas del archivo indicado:
+
+> git blame \<filename\> -L \<line1\>,\<line2\>
+
+Si deseamos ver un poco mejor el outbput se le puede agregar el flag **-c** al comando.
